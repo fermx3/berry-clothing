@@ -17,7 +17,7 @@ const CartDropdown = () => {
         cartItems.map((item) => (
           <CartItem key={item.id} cartItem={item} />
         )) : 
-        <span>Add Items to Cart</span>
+        <span className="empty-message">Add Items to Cart</span>
       }
       </div>
       <Button>GO TO CHECKOUT</Button>
