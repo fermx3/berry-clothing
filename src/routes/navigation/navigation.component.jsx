@@ -16,6 +16,7 @@ import {
   NavLinks,
   NavLink,
 } from "./navigation.styles";
+import { OutsideAlerter } from "../../utils/hooks/outside-alerter.utils";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
@@ -36,9 +37,11 @@ const Navigation = () => {
           ) : (
             <NavLink to="/auth">SIGN IN</NavLink>
           )}
-          <CartIcon />
+          <OutsideAlerter>
+            <CartIcon />
+            {isCartOpen && <CartDropdown />}
+          </OutsideAlerter>
         </NavLinks>
-        {isCartOpen && <CartDropdown />}
       </NavigationContainer>
       <Outlet />
     </Fragment>
