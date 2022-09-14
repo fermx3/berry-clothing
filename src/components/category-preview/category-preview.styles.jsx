@@ -14,7 +14,7 @@ export const Title = styled(Link)`
 
 export const Preview = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
   column-gap: 10px;
   row-gap: 50px;
 `;

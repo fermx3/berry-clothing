@@ -2,7 +2,7 @@ import { useRef, useEffect, useContext } from "react";
 
 import { CartContext } from "../../contexts/cart.context";
 
-const useOutsideAlerter = (ref) => {
+const useOutsideCloser = (ref) => {
   const { setIsCartOpen } = useContext(CartContext);
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -19,9 +19,9 @@ const useOutsideAlerter = (ref) => {
   }, [ref, setIsCartOpen]);
 };
 
-export const OutsideAlerter = (props) => {
+export const OutsideCloser = (props) => {
   const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
+  useOutsideCloser(wrapperRef);
 
   return <div ref={wrapperRef}>{props.children}</div>;
 };

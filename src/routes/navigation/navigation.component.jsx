@@ -10,13 +10,14 @@ import { CartContext } from "../../contexts/cart.context";
 import { ReactComponent as BerryLogo } from "../../assets/berry.svg";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
+import { OutsideCloser } from "../../utils/hooks/outside-closer.utils";
+
 import {
   NavigationContainer,
   LogoContainer,
   NavLinks,
   NavLink,
 } from "./navigation.styles";
-import { OutsideAlerter } from "../../utils/hooks/outside-alerter.utils";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
@@ -37,10 +38,10 @@ const Navigation = () => {
           ) : (
             <NavLink to="/auth">SIGN IN</NavLink>
           )}
-          <OutsideAlerter>
+          <OutsideCloser>
             <CartIcon />
             {isCartOpen && <CartDropdown />}
-          </OutsideAlerter>
+          </OutsideCloser>
         </NavLinks>
       </NavigationContainer>
       <Outlet />
