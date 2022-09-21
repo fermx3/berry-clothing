@@ -1,13 +1,15 @@
-import { useRef, useEffect, useContext } from "react";
+import { useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-import { CartContext } from "../../contexts/cart.context";
+import { setIsCartOpen } from "../../store/cart/cart.action";
 
 const useOutsideCloser = (ref) => {
-  const { setIsCartOpen } = useContext(CartContext);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        setIsCartOpen(false);
+        dispatch(setIsCartOpen(false));
       }
     };
 
@@ -16,7 +18,7 @@ const useOutsideCloser = (ref) => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [ref, setIsCartOpen]);
+  }, [ref, dispatch]);
 };
 
 export const OutsideCloser = (props) => {
