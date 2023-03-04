@@ -18,8 +18,6 @@ import {
   LogoContainer,
   NavLinks,
   NavLink,
-  NavRigthModule,
-  UserName,
 } from "./navigation.styles";
 
 const Navigation = () => {
@@ -31,32 +29,21 @@ const Navigation = () => {
       <NavigationContainer>
         <LogoContainer to="/">
           <BerryLogo className="logo" />
-          <h4>Berry Clothing</h4>
         </LogoContainer>
-        <NavRigthModule>
-            {currentUser && (
-              <UserName>
-                Hi!{" "}
-                {currentUser.displayName
-                  ? currentUser.displayName
-                  : currentUser.email}
-              </UserName>
-            )}
-          <NavLinks>
-            <NavLink to="/shop">SHOP</NavLink>
-            {currentUser ? (
-              <NavLink as="span" onClick={signOutUser}>
-                SIGN OUT
-              </NavLink>
-            ) : (
-              <NavLink to="/auth">SIGN IN</NavLink>
-            )}
-            <OutsideCloser>
-              <CartIcon />
-              {isCartOpen && <CartDropdown />}
-            </OutsideCloser>
-          </NavLinks>
-        </NavRigthModule>
+        <NavLinks>
+          <NavLink to="/shop">SHOP</NavLink>
+          {currentUser ? (
+            <NavLink as="span" onClick={signOutUser}>
+              SIGN OUT
+            </NavLink>
+          ) : (
+            <NavLink to="/auth">SIGN IN</NavLink>
+          )}
+          <OutsideCloser>
+            <CartIcon />
+            {isCartOpen && <CartDropdown />}
+          </OutsideCloser>
+        </NavLinks>
       </NavigationContainer>
       <Outlet />
     </Fragment>
