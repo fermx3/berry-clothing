@@ -1,7 +1,8 @@
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect';
 
 const selectCategoryReducer = (state) => state.categories;
-
+//Memoized selectors throug reselect in order to not over re-render components
+//improving performance
 export const selectCategories = createSelector(
   [selectCategoryReducer],
   (categoriesSlice) => categoriesSlice.categories
