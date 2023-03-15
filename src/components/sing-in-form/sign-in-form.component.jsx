@@ -1,24 +1,26 @@
-import { useState } from "react";
-import {
-  signInWithGooglePopup,
-  signInUserWithEmailAndPassword,
-} from "../../utils/firebase/firebase.utils";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import FormInput from "../form-input/form-input.component";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import FormInput from '../form-input/form-input.component';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
 import {
   SignInContainer,
   Subtitle,
   ButtonsContainer,
-} from "./sign-in-form.styles";
+} from './sign-in-form.styles';
+import {
+  googleSignInStart,
+  emailSignInStart,
+} from '../../store/user/user.action';
 
 const defaultFormFields = {
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 };
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -30,17 +32,17 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      await signInUserWithEmailAndPassword(email, password);
+      dispatch(emailSignInStart(email, password));
 
       resetFormFields();
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
 
-      if (errorCode === "auth/wrong-password") {
-        alert("Wrong password. Please try again.");
-      } else if (errorCode === "auth/user-not-found") {
-        alert("The email does not exist. Please Sign Up.");
+      if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password. Please try again.');
+      } else if (errorCode === 'auth/user-not-found') {
+        alert('The email does not exist. Please Sign Up.');
       } else {
         console.log(`Error: ${errorCode}. ${errorMessage}`);
       }
@@ -54,7 +56,7 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
+    dispatch(googleSignInStart());
   };
 
   return (
@@ -63,24 +65,28 @@ const SignInForm = () => {
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
-          label="Email"
-          type="email"
+          label='Email'
+          type='email'
           required
           onChange={handleChange}
-          name="email"
+          name='email'
           value={email}
         />
         <FormInput
-          label="Password"
-          type="password"
+          label='Password'
+          type='password'
           required
           onChange={handleChange}
-          name="password"
+          name='password'
           value={password}
         />
         <ButtonsContainer>
-          <Button type="submit">Sign In</Button>
-          <Button type="button" buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWithGoogle}>
+          <Button type='submit'>Sign In</Button>
+          <Button
+            type='button'
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            onClick={signInWithGoogle}
+          >
             Google Sign in
           </Button>
         </ButtonsContainer>
