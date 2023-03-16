@@ -6,7 +6,7 @@ import {
   createUserDocumentFromAuth,
 } from './utils/firebase/firebase.utils';
 
-import { setCurrentUser } from './store/user/user.reducer';
+import { setCurrentUser } from './store/user/user.slice';
 
 import { Routes, Route } from 'react-router-dom';
 import Navigation from './routes/navigation/navigation.component';

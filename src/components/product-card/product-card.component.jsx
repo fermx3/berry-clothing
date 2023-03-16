@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { addItemToCart } from '../../store/cart/cart.reducer';
+import { addItemToCart } from '../../store/cart/cart.slice';
 
 import { BUTTON_TYPE_CLASSES } from '../button/button.component';
 

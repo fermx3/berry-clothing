@@ -4,7 +4,7 @@ import {
   clearItemFromCart,
   removeItemFromCart,
   addItemToCart,
-} from '../../store/cart/cart.reducer';
+} from '../../store/cart/cart.slice';
 
 import {
   CheckoutItemContainer,

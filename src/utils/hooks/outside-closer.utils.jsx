@@ -1,7 +1,7 @@
-import { useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { setIsCartOpen } from "../../store/cart/cart.action";
+import { setIsCartOpen } from '../../store/cart/cart.slice';
 
 const useOutsideCloser = (ref) => {
   const dispatch = useDispatch();
@@ -13,10 +13,10 @@ const useOutsideCloser = (ref) => {
       }
     };
 
-    document.addEventListener("click", handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
 
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, [ref, dispatch]);
 };
