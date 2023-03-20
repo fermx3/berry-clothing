@@ -1,5 +1,19 @@
 import styled from 'styled-components';
 
+export const EmptyCartContainer = styled.div`
+  max-width: 800px;
+  margin: auto;
+
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-bottom: 3rem;
+    margin-top: 0.5rem;
+  }
+`;
+
 export const CheckoutContainer = styled.div`
   width: 90%;
   max-width: 1200px;
