@@ -12,8 +12,3 @@ export const ThankYouContainer = styled.div`
     margin: 0;
   }
 `;
-
-export const CheckMarkContainer = styled.div`
-  height: 50px;
-  width: 50px;
-`;
