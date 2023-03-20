@@ -4,6 +4,7 @@ import Button from '../button/button.component';
 export const PaymentFormContainer = styled.div`
   position: relative;
   height: 300px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +14,8 @@ export const PaymentFormContainer = styled.div`
 
 export const FormContainer = styled.form`
   height: 100px;
-  min-width: 500px;
+  width: 100%;
+  max-width: 500px;
 `;
 
 export const PaymentButton = styled(Button)`
