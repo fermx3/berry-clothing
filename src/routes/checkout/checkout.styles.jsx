@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const EmptyCartContainer = styled.div`
   max-width: 800px;
-  margin: auto;
+  margin: 4rem auto;
 
   h1 {
     margin-bottom: 0.5rem;

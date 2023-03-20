@@ -6,7 +6,11 @@ export const ThankYouContainer = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 60vh;
-  margin-top: auto;
+  margin: 4rem auto;
+
+  p {
+    margin: 0;
+  }
 `;
 
 export const CheckMarkContainer = styled.div`
