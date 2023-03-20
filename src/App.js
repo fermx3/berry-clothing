@@ -14,6 +14,7 @@ import Home from './routes/home/home.component';
 import Authentication from './routes/authentication/authentication.component';
 import Shop from './routes/shop/shop.component';
 import Checkout from './routes/checkout/checkout.component';
+import ThankYouPage from './routes/thank-you-page/thank-you-page.component';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,8 +25,15 @@ const App = () => {
         createUserDocumentFromAuth(user);
       }
       const pickedUser =
-        user && (({ accessToken, email }) => ({ accessToken, email }))(user);
+        user &&
+        (({ accessToken, email, displayName, photoURL }) => ({
+          accessToken,
+          email,
+          displayName,
+          photoURL,
+        }))(user);
       console.log(setCurrentUser(user));
+      console.log(setCurrentUser(pickedUser));
       dispatch(setCurrentUser(pickedUser));
     });
 
@@ -39,6 +47,7 @@ const App = () => {
         <Route path='shop/*' element={<Shop />} />
         <Route path='auth' element={<Authentication />} />
         <Route path='checkout' element={<Checkout />} />
+        <Route path='thank-you' element={<ThankYouPage />} />
       </Route>
     </Routes>
   );

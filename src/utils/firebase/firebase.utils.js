@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import {
   getAuth,
   signInWithPopup,
@@ -7,7 +7,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-} from "firebase/auth";
+  updateProfile,
+} from 'firebase/auth';
 import {
   getFirestore,
   doc,
@@ -17,15 +18,15 @@ import {
   writeBatch,
   query,
   getDocs,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAd4WfikbWudbUfODl-OKUwIJnG9vduuNA",
-  authDomain: "berry-clothing-db.firebaseapp.com",
-  projectId: "berry-clothing-db",
-  storageBucket: "berry-clothing-db.appspot.com",
-  messagingSenderId: "330140751111",
-  appId: "1:330140751111:web:1ff854ee069a22644521a2",
+  apiKey: 'AIzaSyAd4WfikbWudbUfODl-OKUwIJnG9vduuNA',
+  authDomain: 'berry-clothing-db.firebaseapp.com',
+  projectId: 'berry-clothing-db',
+  storageBucket: 'berry-clothing-db.appspot.com',
+  messagingSenderId: '330140751111',
+  appId: '1:330140751111:web:1ff854ee069a22644521a2',
 };
 
 // Initialize Firebase
@@ -33,7 +34,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({
-  prompt: "select_account",
+  prompt: 'select_account',
 });
 
 export const auth = getAuth();
@@ -55,11 +56,11 @@ export const addCollectionsAndDocuments = async (
   });
 
   await batch.commit();
-  console.log("done");
+  console.log('done');
 };
 
 export const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, "categories");
+  const collectionRef = collection(db, 'categories');
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
@@ -72,7 +73,7 @@ export const createUserDocumentFromAuth = async (
 ) => {
   if (!userAuth) return;
 
-  const userDocRef = doc(db, "users", userAuth.uid);
+  const userDocRef = doc(db, 'users', userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
 
@@ -88,7 +89,7 @@ export const createUserDocumentFromAuth = async (
         ...additionalInformation,
       });
     } catch (err) {
-      console.log("error creating the user", err.message);
+      console.log('error creating the user', err.message);
     }
   }
 
@@ -105,6 +106,12 @@ export const signInUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
   return await signInWithEmailAndPassword(auth, email, password);
+};
+
+export const addDisplayName = async (user, displayName) => {
+  updateProfile(user, {
+    displayName,
+  });
 };
 
 export const signOutUser = async () => await signOut(auth);

@@ -3,6 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 export const CART_INITIAL_STATE = {
   isCartOpen: false,
   cartItems: [],
+  lastPurchase: {
+    items: [],
+    total: 0,
+  },
 };
 
 const addCartItem = (cartItems, productToAdd) => {
@@ -53,6 +57,12 @@ export const cartSlice = createSlice({
     clearItemFromCart(state, action) {
       state.cartItems = clearCartItem(state.cartItems, action.payload);
     },
+    addLastPurchase(state, action) {
+      state.lastPurchase = action.payload;
+    },
+    clearCart(state, action) {
+      state.cartItems = action.payload;
+    },
   },
 });
 
@@ -61,6 +71,8 @@ export const {
   addItemToCart,
   removeItemFromCart,
   clearItemFromCart,
+  addLastPurchase,
+  clearCart,
 } = cartSlice.actions;
 
 export const cartReducer = cartSlice.reducer;

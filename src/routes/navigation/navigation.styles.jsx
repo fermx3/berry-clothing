@@ -1,5 +1,14 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+export const NavBar = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  margin-bottom: 25px;
+  top: 0;
+  z-index: 1;
+`;
 
 export const NavigationContainer = styled.div`
   background-color: white;
@@ -7,10 +16,6 @@ export const NavigationContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
-  position: sticky;
-  top: 0;
-  z-index: 1;
 `;
 
 export const LogoContainer = styled(Link)`
@@ -36,4 +41,26 @@ export const NavLinks = styled.div`
 export const NavLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
+`;
+
+export const LoggedInUser = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: mediumvioletred;
+  color: white;
+  width: fit-content;
+  padding: 0 10px;
+  margin-left: auto;
+
+  p {
+    margin: 8px 0;
+    font-weight: 600;
+  }
+
+  img {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    border-radius: 50%;
+  }
 `;
